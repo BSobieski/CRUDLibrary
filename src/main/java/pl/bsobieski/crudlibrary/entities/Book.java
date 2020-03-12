@@ -23,6 +23,10 @@ public class Book {
     private Author translationAuthor;
 
     @ManyToOne
+    @JoinColumn(name = "publishing_house")
+    private PublishingHouse publishingHouse;
+
+    @ManyToOne
     @JoinColumn(name = "language_of_publication")
     private Language languageOfPublication;
 

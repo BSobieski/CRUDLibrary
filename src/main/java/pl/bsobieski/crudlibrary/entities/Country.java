@@ -18,6 +18,10 @@ public class Country {
     @OneToMany(mappedBy = "countryOfOrigin")
     private List<Author> authorsFromThisCountry = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "publishingHouseCountry")
+    private List<PublishingHouse> publishingHousesFromCountry = new ArrayList<>();
+
     public Country(String countryName) {
         this.countryName = countryName;
     }
@@ -47,5 +51,13 @@ public class Country {
 
     public void setAuthorsFromThisCountry(List<Author> authorsFromThisCountry) {
         this.authorsFromThisCountry = authorsFromThisCountry;
+    }
+
+    public List<PublishingHouse> getPublishingHousesFromCountry() {
+        return publishingHousesFromCountry;
+    }
+
+    public void setPublishingHousesFromCountry(List<PublishingHouse> publishingHousesFromCountry) {
+        this.publishingHousesFromCountry = publishingHousesFromCountry;
     }
 }

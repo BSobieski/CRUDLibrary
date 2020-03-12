@@ -3,6 +3,7 @@ package pl.bsobieski.crudlibrary.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,15 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String lastName;
 
     private LocalDate dateOfBirth;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "country_of_origin")
     private Country countryOfOrigin;
