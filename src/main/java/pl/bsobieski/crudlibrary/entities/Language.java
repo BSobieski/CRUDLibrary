@@ -1,6 +1,10 @@
 package pl.bsobieski.crudlibrary.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Language {
@@ -8,14 +12,21 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column()
-    private String name;
+    private String languageName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "languageOfPublication")
+    private List<Book> publicationLanguageBooks = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "languageOfTranslation")
+    private List<Book> translatedLanguageBooks = new ArrayList<>();
 
     public Language() {
     }
 
-    public Language(String name) {
-        this.name = name;
+    public Language(String languageName) {
+        this.languageName = languageName;
     }
 
     public Long getId() {
@@ -26,11 +37,27 @@ public class Language {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLanguageName() {
+        return languageName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLanguageName(String languageName) {
+        this.languageName = languageName;
+    }
+
+    public List<Book> getPublicationLanguageBooks() {
+        return publicationLanguageBooks;
+    }
+
+    public void setPublicationLanguageBooks(List<Book> publicationLanguageBooks) {
+        this.publicationLanguageBooks = publicationLanguageBooks;
+    }
+
+    public List<Book> getTranslatedLanguageBooks() {
+        return translatedLanguageBooks;
+    }
+
+    public void setTranslatedLanguageBooks(List<Book> translatedLanguageBooks) {
+        this.translatedLanguageBooks = translatedLanguageBooks;
     }
 }

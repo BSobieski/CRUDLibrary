@@ -12,12 +12,22 @@ public class Book {
     private Long id;
 
     @NotNull
-    private String title;
+    private String bookTitle;
 
     @ManyToOne
+    @JoinColumn(name = "book_author")
+    private Author bookAuthor;
+
+    @ManyToOne
+    @JoinColumn(name = "translation_author")
+    private Author translationAuthor;
+
+    @ManyToOne
+    @JoinColumn(name = "language_of_publication")
     private Language languageOfPublication;
 
     @ManyToOne
+    @JoinColumn(name = "language_of_translation")
     private Language languageOfTranslation;
 
     private int numberOfPages;
@@ -31,20 +41,23 @@ public class Book {
     private Year releaseYear;
 
     @Column(columnDefinition = "TEXT")
-    private String description;
+    private String bookDescription;
 
     public Book() {
     }
 
-    public Book(String title, Language languageOfPublication, Language languageOfTranslation, int numberOfPages, int issueNumber, LocalDate releaseDate, Year releaseYear, String description) {
-        this.title = title;
+    public Book(String bookTitle, Author bookAuthor, Author translationAuthor, Language languageOfPublication, Language languageOfTranslation,
+                int numberOfPages, int issueNumber, LocalDate releaseDate, Year releaseYear, String bookDescription) {
+        this.bookTitle = bookTitle;
+        this.bookAuthor = bookAuthor;
+        this.translationAuthor = translationAuthor;
         this.languageOfPublication = languageOfPublication;
         this.languageOfTranslation = languageOfTranslation;
         this.numberOfPages = numberOfPages;
         this.issueNumber = issueNumber;
         this.releaseDate = releaseDate;
         this.releaseYear = releaseYear;
-        this.description = description;
+        this.bookDescription = bookDescription;
     }
 
     public Long getId() {
@@ -55,12 +68,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getBookTitle() {
+        return bookTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBookTitle(String title) {
+        this.bookTitle = title;
     }
 
     public Language getLanguageOfPublication() {
@@ -111,11 +124,27 @@ public class Book {
         this.releaseYear = releaseYear;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBookDescription() {
+        return bookDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBookDescription(String description) {
+        this.bookDescription = description;
+    }
+
+    public Author getBookAuthor() {
+        return bookAuthor;
+    }
+
+    public void setBookAuthor(Author author) {
+        this.bookAuthor = author;
+    }
+
+    public Author getTranslationAuthor() {
+        return translationAuthor;
+    }
+
+    public void setTranslationAuthor(Author translationAuthor) {
+        this.translationAuthor = translationAuthor;
     }
 }

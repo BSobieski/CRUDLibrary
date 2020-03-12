@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/language")
-public class LanguageApi {
+public class LanguageController {
     private LanguageService languageService;
 
     @Autowired
-    public LanguageApi(LanguageService languageService) {
+    public LanguageController(LanguageService languageService) {
         this.languageService = languageService;
     }
 
