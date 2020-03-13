@@ -23,6 +23,7 @@ public class PublishingHouse {
     @NotNull
     private String publishingHouseCity;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "country")
     private Country publishingHouseCountry;

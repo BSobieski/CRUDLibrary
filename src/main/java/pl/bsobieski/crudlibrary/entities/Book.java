@@ -14,6 +14,7 @@ public class Book {
     @NotNull
     private String bookTitle;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "book_author")
     private Author bookAuthor;
@@ -22,10 +23,12 @@ public class Book {
     @JoinColumn(name = "translation_author")
     private Author translationAuthor;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "publishing_house")
     private PublishingHouse publishingHouse;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "language_of_publication")
     private Language languageOfPublication;
