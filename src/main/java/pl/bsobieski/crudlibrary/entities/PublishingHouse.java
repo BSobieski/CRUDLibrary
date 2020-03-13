@@ -21,6 +21,9 @@ public class PublishingHouse {
     private String publishingHouseStreetAdress;
 
     @NotNull
+    private String publishingHousePostCode;
+
+    @NotNull
     private String publishingHouseCity;
 
     @NotNull
@@ -39,9 +42,10 @@ public class PublishingHouse {
     public PublishingHouse() {
     }
 
-    public PublishingHouse(String publishingHouseName, String publishingHouseStreetAdress, String publishingHouseCity, Country publishingHouseCountry, String email, String phone) {
+    public PublishingHouse(String publishingHouseName, String publishingHouseStreetAdress, @NotNull String publishingHousePostCode, String publishingHouseCity, Country publishingHouseCountry, String email, String phone) {
         this.publishingHouseName = publishingHouseName;
         this.publishingHouseStreetAdress = publishingHouseStreetAdress;
+        this.publishingHousePostCode = publishingHousePostCode;
         this.publishingHouseCity = publishingHouseCity;
         this.publishingHouseCountry = publishingHouseCountry;
         this.email = email;
@@ -102,5 +106,21 @@ public class PublishingHouse {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPublishingHousePostCode() {
+        return publishingHousePostCode;
+    }
+
+    public void setPublishingHousePostCode(String publishingHousePostCode) {
+        this.publishingHousePostCode = publishingHousePostCode;
+    }
+
+    public List<Book> getBooksOfThePublishingHouse() {
+        return booksOfThePublishingHouse;
+    }
+
+    public void setBooksOfThePublishingHouse(List<Book> booksOfThePublishingHouse) {
+        this.booksOfThePublishingHouse = booksOfThePublishingHouse;
     }
 }

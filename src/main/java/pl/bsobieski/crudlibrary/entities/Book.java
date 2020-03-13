@@ -45,7 +45,8 @@ public class Book {
     private LocalDate releaseDate;
 
     @NotNull
-    private Year releaseYear;
+    @Column(columnDefinition = "SMALLINT")
+    private int releaseYear;
 
     @Column(columnDefinition = "TEXT")
     private String bookDescription;
@@ -53,11 +54,12 @@ public class Book {
     public Book() {
     }
 
-    public Book(String bookTitle, Author bookAuthor, Author translationAuthor, Language languageOfPublication, Language languageOfTranslation,
-                int numberOfPages, int issueNumber, LocalDate releaseDate, Year releaseYear, String bookDescription) {
+    public Book(String bookTitle, Author bookAuthor, Author translationAuthor, @NotNull PublishingHouse publishingHouse, Language languageOfPublication, Language languageOfTranslation,
+                int numberOfPages, int issueNumber, LocalDate releaseDate, int releaseYear, String bookDescription) {
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.translationAuthor = translationAuthor;
+        this.publishingHouse = publishingHouse;
         this.languageOfPublication = languageOfPublication;
         this.languageOfTranslation = languageOfTranslation;
         this.numberOfPages = numberOfPages;
@@ -123,11 +125,11 @@ public class Book {
         this.releaseDate = releaseDate;
     }
 
-    public Year getReleaseYear() {
+    public int getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Year releaseYear) {
+    public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
 
@@ -153,5 +155,13 @@ public class Book {
 
     public void setTranslationAuthor(Author translationAuthor) {
         this.translationAuthor = translationAuthor;
+    }
+
+    public PublishingHouse getPublishingHouse() {
+        return publishingHouse;
+    }
+
+    public void setPublishingHouse(PublishingHouse publishingHouse) {
+        this.publishingHouse = publishingHouse;
     }
 }
