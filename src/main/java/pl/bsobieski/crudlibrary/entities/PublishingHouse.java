@@ -42,7 +42,7 @@ public class PublishingHouse {
     public PublishingHouse() {
     }
 
-    public PublishingHouse(String publishingHouseName, String publishingHouseStreetAdress, @NotNull String publishingHousePostCode, String publishingHouseCity, Country publishingHouseCountry, String email, String phone) {
+    public PublishingHouse(String publishingHouseName, String publishingHouseStreetAdress, @NotNull String publishingHousePostCode, String publishingHouseCity, Country publishingHouseCountry, String phone, String email) {
         this.publishingHouseName = publishingHouseName;
         this.publishingHouseStreetAdress = publishingHouseStreetAdress;
         this.publishingHousePostCode = publishingHousePostCode;

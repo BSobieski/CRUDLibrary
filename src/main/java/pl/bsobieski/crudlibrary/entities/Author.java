@@ -15,10 +15,7 @@ public class Author {
     private Long id;
 
     @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
+    private String authorName;
 
     private LocalDate dateOfBirth;
 
@@ -41,9 +38,8 @@ public class Author {
     public Author() {
     }
 
-    public Author(String firstName, String lastName, LocalDate dateOfBirth, Country countryOfOrigin, String authorDescription) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Author(String authorName, LocalDate dateOfBirth, Country countryOfOrigin, String authorDescription) {
+        this.authorName = authorName;
         this.dateOfBirth = dateOfBirth;
         this.countryOfOrigin = countryOfOrigin;
         this.authorDescription = authorDescription;
@@ -57,20 +53,12 @@ public class Author {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAuthorName(String firstName) {
+        this.authorName = firstName;
     }
 
     public LocalDate getDateOfBirth() {

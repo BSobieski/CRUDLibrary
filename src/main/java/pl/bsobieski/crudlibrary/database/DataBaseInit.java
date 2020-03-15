@@ -11,7 +11,6 @@ import pl.bsobieski.crudlibrary.repositories.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +34,7 @@ public class DataBaseInit implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         loadCountries();
         loadLanguages();
         loadPublishingHouses();
@@ -50,10 +49,8 @@ public class DataBaseInit implements CommandLineRunner {
             List<Book> allBooksToSave = new ArrayList<>();
             for (String line : allBooksFromFile) {
                 List<String> booksParameters = Arrays.asList(line.split(","));
-                String[] names = booksParameters.get(1).split(" ");
-                Optional<Author> bookAuthor = authorRepository.findByFirstNameAndLastName(names[0], names[1]);
-                names = booksParameters.get(2).split(" ");
-                Optional<Author> translationAuthor = authorRepository.findByFirstNameAndLastName(names[0], names[1]);
+                Optional<Author> bookAuthor = authorRepository.findByAuthorName(booksParameters.get(1));
+                Optional<Author> translationAuthor = authorRepository.findByAuthorName(booksParameters.get(2));
                 Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findByPublishingHouseName(booksParameters.get(3));
                 Optional<Language> languageOfPublication = languageRepository.findByLanguageName(booksParameters.get(4));
                 Optional<Language> languageOfTranslation = languageRepository.findByLanguageName(booksParameters.get(5));
@@ -86,14 +83,13 @@ public class DataBaseInit implements CommandLineRunner {
             List<Author> allAuthorsToSave = new ArrayList<>();
             for (String line : allAuthorsFromFile) {
                 List<String> authorPaameters = Arrays.asList(line.split(","));
-                Optional<Country> countryOfOrigin = countryRepository.findByCountryName(authorPaameters.get(3));
+                Optional<Country> countryOfOrigin = countryRepository.findByCountryName(authorPaameters.get(2));
                 countryOfOrigin.ifPresent(country ->
                         allAuthorsToSave.add(new Author(
                                 authorPaameters.get(0),
-                                authorPaameters.get(1),
-                                LocalDate.parse(authorPaameters.get(2)),
+                                LocalDate.parse(authorPaameters.get(1)),
                                 country,
-                                authorPaameters.get(4)
+                                authorPaameters.get(3)
                         ))
                 );
             }
