@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.Country;
 import pl.bsobieski.crudlibrary.services.CountryService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,7 +23,7 @@ public class CountryController {
         return countryService.getAll();
     }
 
-    @GetMapping
+    @GetMapping("/id")
     public Optional<Country> getById(@RequestParam Long id){
         return countryService.getById(id);
     }
@@ -38,7 +39,18 @@ public class CountryController {
     }
 
     @DeleteMapping
-    public void deleteCountry(@RequestParam Long id){
-        countryService.deleteById(id);
+    public void deleteCountry(@RequestParam String name){
+        countryService.deleteByName(name);
     }
+
+    @GetMapping
+    public Optional<Country> getByName(@RequestParam String name){
+        return countryService.getByName(name);
+    }
+
+    @GetMapping("/{pattern}")
+    public List<Country> getCountryNamesByPattern(@PathVariable("pattern") String pattern){
+        return countryService.getCountryNamesByPattern(pattern);
+    }
+
 }

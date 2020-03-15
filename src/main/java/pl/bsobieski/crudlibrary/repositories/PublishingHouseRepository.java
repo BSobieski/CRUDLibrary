@@ -6,5 +6,6 @@ import pl.bsobieski.crudlibrary.entities.PublishingHouse;
 import java.util.Optional;
 
 public interface PublishingHouseRepository extends CrudRepository<PublishingHouse, Long> {
-    Optional<PublishingHouse> findByName(String name);
+    Optional<PublishingHouse> getByName(String name);
+    void deleteByName(String authorName);
 }

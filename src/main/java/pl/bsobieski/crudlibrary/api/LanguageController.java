@@ -2,10 +2,11 @@ package pl.bsobieski.crudlibrary.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.bsobieski.crudlibrary.entities.Book;
 import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.services.LanguageService;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,6 +25,11 @@ public class LanguageController {
     }
 
     @GetMapping
+    public Optional<Language> getByName(@RequestParam String name){
+        return languageService.getByName(name);
+    }
+
+    @GetMapping("/id")
     public Optional<Language> getById(@RequestParam Long id){
         return languageService.getById(id);
     }
@@ -39,7 +45,12 @@ public class LanguageController {
     }
 
     @DeleteMapping
-    public void deleteLanguage(@RequestParam Long id){
-        languageService.deleteById(id);
+    public void deleteLanguage(@RequestParam String name){
+        languageService.deleteByName(name);
+    }
+
+    @GetMapping("/{pattern}")
+    public List<Language> getNameByPattern(@PathVariable("pattern") String pattern){
+        return languageService.getNameByPattern(pattern);
     }
 }

@@ -49,11 +49,11 @@ public class DataBaseInit implements CommandLineRunner {
             List<Book> allBooksToSave = new ArrayList<>();
             for (String line : allBooksFromFile) {
                 List<String> booksParameters = Arrays.asList(line.split(","));
-                Optional<Author> bookAuthor = authorRepository.findByName(booksParameters.get(1));
-                Optional<Author> translationAuthor = authorRepository.findByName(booksParameters.get(2));
-                Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findByName(booksParameters.get(3));
-                Optional<Language> languageOfPublication = languageRepository.findByName(booksParameters.get(4));
-                Optional<Language> languageOfTranslation = languageRepository.findByName(booksParameters.get(5));
+                Optional<Author> bookAuthor = authorRepository.getByName(booksParameters.get(1));
+                Optional<Author> translationAuthor = authorRepository.getByName(booksParameters.get(2));
+                Optional<PublishingHouse> publishingHouse = publishingHouseRepository.getByName(booksParameters.get(3));
+                Optional<Language> languageOfPublication = languageRepository.getByName(booksParameters.get(4));
+                Optional<Language> languageOfTranslation = languageRepository.getByName(booksParameters.get(5));
                 allBooksToSave.add(new Book(
                         booksParameters.get(0),
                         bookAuthor.get(),
@@ -83,7 +83,7 @@ public class DataBaseInit implements CommandLineRunner {
             List<Author> allAuthorsToSave = new ArrayList<>();
             for (String line : allAuthorsFromFile) {
                 List<String> authorPaameters = Arrays.asList(line.split(","));
-                Optional<Country> countryOfOrigin = countryRepository.findByName(authorPaameters.get(2));
+                Optional<Country> countryOfOrigin = countryRepository.getByName(authorPaameters.get(2));
                 countryOfOrigin.ifPresent(country ->
                         allAuthorsToSave.add(new Author(
                                 authorPaameters.get(0),
@@ -106,7 +106,7 @@ public class DataBaseInit implements CommandLineRunner {
             List<PublishingHouse> allPHToSave = new ArrayList<>();
             for (String line : allPHFromFile) {
                 List<String> PHParameters = Arrays.asList(line.split(","));
-                Optional<Country> publishingHouseCountry = countryRepository.findByName(PHParameters.get(4));
+                Optional<Country> publishingHouseCountry = countryRepository.getByName(PHParameters.get(4));
                 publishingHouseCountry.ifPresent(country -> allPHToSave.add(
                         new PublishingHouse(
                                 PHParameters.get(0),

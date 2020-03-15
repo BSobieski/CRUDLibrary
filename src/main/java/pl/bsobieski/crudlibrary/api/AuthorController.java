@@ -18,27 +18,29 @@ public class AuthorController {
     }
 
     @GetMapping("/all")
-    public Iterable<Author> getAll(){
+    public Iterable<Author> getAll() {
         return authorService.getAll();
     }
 
     @GetMapping
-    public Optional<Author> getById(@RequestParam Long id){
+    public Optional<Author> getById(@RequestParam Long id) {
         return authorService.getById(id);
     }
 
     @PostMapping
-    public Author addAuthor(@RequestBody Author author){
+    public Author addAuthor(@RequestBody Author author) {
         return authorService.save(author);
     }
 
     @PutMapping
-    public Author modifyAuthor(@RequestBody Author author){
+    public Author modifyAuthor(@RequestBody Author author) {
         return authorService.save(author);
     }
 
     @DeleteMapping
-    public void deleteAuthor(@RequestParam Long id){
+    public void deleteAuthor(@RequestParam Long id) {
         authorService.deleteById(id);
     }
+
 }
+

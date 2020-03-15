@@ -6,5 +6,6 @@ import pl.bsobieski.crudlibrary.entities.Author;
 import java.util.Optional;
 
 public interface AuthorRepository extends CrudRepository<Author, Long> {
-    Optional<Author> findByName(String authorName);
+    Optional<Author> getByName(String authorName);
+    void deleteByName(String authorName);
 }
