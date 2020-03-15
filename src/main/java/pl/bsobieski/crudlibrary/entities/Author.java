@@ -15,7 +15,7 @@ public class Author {
     private Long id;
 
     @NotNull
-    private String authorName;
+    private String name;
 
     private LocalDate dateOfBirth;
 
@@ -25,10 +25,10 @@ public class Author {
     private Country countryOfOrigin;
 
     @Column(columnDefinition = "TEXT")
-    private String authorDescription;
+    private String description;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "bookAuthor")
+    @OneToMany(mappedBy = "author")
     private List<Book> listOfAuthorBooks = new ArrayList<>();
 
     @JsonIgnore
@@ -38,11 +38,11 @@ public class Author {
     public Author() {
     }
 
-    public Author(String authorName, LocalDate dateOfBirth, Country countryOfOrigin, String authorDescription) {
-        this.authorName = authorName;
+    public Author(String name, LocalDate dateOfBirth, Country countryOfOrigin, String description) {
+        this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.countryOfOrigin = countryOfOrigin;
-        this.authorDescription = authorDescription;
+        this.description = description;
     }
 
     public Long getId() {
@@ -53,12 +53,12 @@ public class Author {
         this.id = id;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getName() {
+        return name;
     }
 
-    public void setAuthorName(String firstName) {
-        this.authorName = firstName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
     public LocalDate getDateOfBirth() {
@@ -77,12 +77,12 @@ public class Author {
         this.countryOfOrigin = countryOfOrigin;
     }
 
-    public String getAuthorDescription() {
-        return authorDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAuthorDescription(String text) {
-        this.authorDescription = text;
+    public void setDescription(String text) {
+        this.description = text;
     }
 
     public List<Book> getListOfAuthorBooks() {

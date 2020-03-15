@@ -14,18 +14,18 @@ public class Country {
     private Long id;
 
     @NotNull
-    private String countryName;
+    private String name;
 
     @JsonIgnore
     @OneToMany(mappedBy = "countryOfOrigin")
     private List<Author> authorsFromThisCountry = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "publishingHouseCountry")
+    @OneToMany(mappedBy = "country")
     private List<PublishingHouse> publishingHousesFromCountry = new ArrayList<>();
 
-    public Country(String countryName) {
-        this.countryName = countryName;
+    public Country(String name) {
+        this.name = name;
     }
 
     public Country() {
@@ -39,12 +39,12 @@ public class Country {
         this.id = countryId;
     }
 
-    public String getCountryName() {
-        return countryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCountryName(String name) {
-        this.countryName = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Author> getAuthorsFromThisCountry() {

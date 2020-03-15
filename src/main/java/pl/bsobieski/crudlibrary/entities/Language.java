@@ -14,7 +14,7 @@ public class Language {
     private Long id;
 
     @NotNull
-    private String languageName;
+    private String name;
 
     @JsonIgnore
     @OneToMany(mappedBy = "languageOfPublication")
@@ -27,8 +27,8 @@ public class Language {
     public Language() {
     }
 
-    public Language(String languageName) {
-        this.languageName = languageName;
+    public Language(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -39,12 +39,12 @@ public class Language {
         this.id = id;
     }
 
-    public String getLanguageName() {
-        return languageName;
+    public String getName() {
+        return name;
     }
 
-    public void setLanguageName(String languageName) {
-        this.languageName = languageName;
+    public void setName(String languageName) {
+        this.name = languageName;
     }
 
     public List<Book> getPublicationLanguageBooks() {

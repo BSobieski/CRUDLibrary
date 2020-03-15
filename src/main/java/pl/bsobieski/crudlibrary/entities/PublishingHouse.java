@@ -15,21 +15,21 @@ public class PublishingHouse {
     private Long id;
 
     @NotNull
-    private String publishingHouseName;
+    private String name;
 
     @NotNull
-    private String publishingHouseStreetAdress;
+    private String streetAdress;
 
     @NotNull
-    private String publishingHousePostCode;
+    private String postCode;
 
     @NotNull
-    private String publishingHouseCity;
+    private String city;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "country")
-    private Country publishingHouseCountry;
+    private Country country;
 
     private String email;
 
@@ -42,12 +42,12 @@ public class PublishingHouse {
     public PublishingHouse() {
     }
 
-    public PublishingHouse(String publishingHouseName, String publishingHouseStreetAdress, @NotNull String publishingHousePostCode, String publishingHouseCity, Country publishingHouseCountry, String phone, String email) {
-        this.publishingHouseName = publishingHouseName;
-        this.publishingHouseStreetAdress = publishingHouseStreetAdress;
-        this.publishingHousePostCode = publishingHousePostCode;
-        this.publishingHouseCity = publishingHouseCity;
-        this.publishingHouseCountry = publishingHouseCountry;
+    public PublishingHouse(String name, String streetAdress, @NotNull String postCode, String city, Country country, String phone, String email) {
+        this.name = name;
+        this.streetAdress = streetAdress;
+        this.postCode = postCode;
+        this.city = city;
+        this.country = country;
         this.email = email;
         this.phone = phone;
     }
@@ -60,36 +60,36 @@ public class PublishingHouse {
         this.id = id;
     }
 
-    public String getPublishingHouseName() {
-        return publishingHouseName;
+    public String getName() {
+        return name;
     }
 
-    public void setPublishingHouseName(String publishingHouseName) {
-        this.publishingHouseName = publishingHouseName;
+    public void setName(String publishingHouseName) {
+        this.name = publishingHouseName;
     }
 
-    public String getPublishingHouseStreetAdress() {
-        return publishingHouseStreetAdress;
+    public String getStreetAdress() {
+        return streetAdress;
     }
 
-    public void setPublishingHouseStreetAdress(String streetAdress) {
-        this.publishingHouseStreetAdress = streetAdress;
+    public void setStreetAdress(String streetAdress) {
+        this.streetAdress = streetAdress;
     }
 
-    public String getPublishingHouseCity() {
-        return publishingHouseCity;
+    public String getCity() {
+        return city;
     }
 
-    public void setPublishingHouseCity(String city) {
-        this.publishingHouseCity = city;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Country getPublishingHouseCountry() {
-        return publishingHouseCountry;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setPublishingHouseCountry(Country country) {
-        this.publishingHouseCountry = country;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getEmail() {
@@ -108,12 +108,12 @@ public class PublishingHouse {
         this.phone = phone;
     }
 
-    public String getPublishingHousePostCode() {
-        return publishingHousePostCode;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setPublishingHousePostCode(String publishingHousePostCode) {
-        this.publishingHousePostCode = publishingHousePostCode;
+    public void setPostCode(String publishingHousePostCode) {
+        this.postCode = publishingHousePostCode;
     }
 
     public List<Book> getBooksOfThePublishingHouse() {

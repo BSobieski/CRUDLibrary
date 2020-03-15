@@ -3,7 +3,6 @@ package pl.bsobieski.crudlibrary.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.Year;
 
 @Entity
 public class Book {
@@ -12,12 +11,12 @@ public class Book {
     private Long id;
 
     @NotNull
-    private String bookTitle;
+    private String title;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "book_author")
-    private Author bookAuthor;
+    private Author author;
 
     @ManyToOne
     @JoinColumn(name = "translation_author")
@@ -49,15 +48,15 @@ public class Book {
     private int releaseYear;
 
     @Column(columnDefinition = "TEXT")
-    private String bookDescription;
+    private String description;
 
     public Book() {
     }
 
-    public Book(String bookTitle, Author bookAuthor, Author translationAuthor, @NotNull PublishingHouse publishingHouse, Language languageOfPublication, Language languageOfTranslation,
-                int numberOfPages, int issueNumber, LocalDate releaseDate, int releaseYear, String bookDescription) {
-        this.bookTitle = bookTitle;
-        this.bookAuthor = bookAuthor;
+    public Book(String title, Author author, Author translationAuthor, @NotNull PublishingHouse publishingHouse, Language languageOfPublication, Language languageOfTranslation,
+                int numberOfPages, int issueNumber, LocalDate releaseDate, int releaseYear, String description) {
+        this.title = title;
+        this.author = author;
         this.translationAuthor = translationAuthor;
         this.publishingHouse = publishingHouse;
         this.languageOfPublication = languageOfPublication;
@@ -66,7 +65,7 @@ public class Book {
         this.issueNumber = issueNumber;
         this.releaseDate = releaseDate;
         this.releaseYear = releaseYear;
-        this.bookDescription = bookDescription;
+        this.description = description;
     }
 
     public Long getId() {
@@ -77,12 +76,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBookTitle(String title) {
-        this.bookTitle = title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Language getLanguageOfPublication() {
@@ -133,20 +132,20 @@ public class Book {
         this.releaseYear = releaseYear;
     }
 
-    public String getBookDescription() {
-        return bookDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBookDescription(String description) {
-        this.bookDescription = description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Author getBookAuthor() {
-        return bookAuthor;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setBookAuthor(Author author) {
-        this.bookAuthor = author;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public Author getTranslationAuthor() {
