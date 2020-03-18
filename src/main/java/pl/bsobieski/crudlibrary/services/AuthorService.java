@@ -3,7 +3,6 @@ package pl.bsobieski.crudlibrary.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.Author;
-import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.repositories.AuthorRepository;
 
 import java.util.List;
