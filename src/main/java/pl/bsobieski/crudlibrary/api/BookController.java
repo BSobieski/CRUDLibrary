@@ -3,8 +3,12 @@ package pl.bsobieski.crudlibrary.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.Book;
+import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.services.BookService;
 
+import java.time.LocalDate;
+import java.time.Year;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,8 +26,8 @@ public class BookController {
         return bookService.getAll();
     }
 
-    @GetMapping
-    public Optional<Book> getById(@RequestParam Long id){
+    @GetMapping("/id/{id}")
+    public Optional<Book> getById(@PathVariable("id") Long id){
         return bookService.getById(id);
     }
 
@@ -40,5 +44,25 @@ public class BookController {
     @DeleteMapping
     public void deleteBook(@RequestParam Long id){
         bookService.deleteById(id);
+    }
+
+    @GetMapping("/{pattern}")
+    public List<Book> getBookTitlesByPattern(@PathVariable("pattern") String pattern){
+        return bookService.getBookTitlesByPattern(pattern);
+    }
+
+    @GetMapping
+    public Optional<Book> getByTitle(String title){
+        return bookService.getByTitle(title);
+    }
+
+    @GetMapping("/releaseDate/{releaseDate}")
+    public List<Book> getBooksByReleaseDateAfter(@PathVariable("releaseDate") String releaseDate){
+        return bookService.getBooksByReleaseDateAfter(LocalDate.parse(releaseDate));
+    }
+
+    @GetMapping("/releaseYear/{releaseYear}")
+    public List<Book> getBooksByReleaseYearAfter(@PathVariable("releaseYear") Integer releaseYear){
+        return bookService.getBooksByReleaseYearAfter(releaseYear);
     }
 }
