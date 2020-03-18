@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.repositories.LanguageRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,10 @@ public class LanguageService {
         return languageRepository.findAll();
     }
 
+    public Optional<Language> getByName(String name){
+        return languageRepository.getByName(name);
+    }
+
     public Optional<Language> getById(Long id){
         return languageRepository.findById(id);
     }
@@ -30,5 +35,13 @@ public class LanguageService {
 
     public void deleteById(Long id){
         languageRepository.deleteById(id);
+    }
+
+    public List<Language> getNameByPattern(String pattern){
+        return languageRepository.getLanguageNameByPattern(pattern);
+    }
+
+    public Iterable<Language> saveAll(Iterable<Language> languageIterable){
+        return languageRepository.saveAll(languageIterable);
     }
 }

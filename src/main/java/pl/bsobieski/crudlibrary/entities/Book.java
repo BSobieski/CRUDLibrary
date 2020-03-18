@@ -3,7 +3,6 @@ package pl.bsobieski.crudlibrary.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.Year;
 
 @Entity
 public class Book {
@@ -14,10 +13,27 @@ public class Book {
     @NotNull
     private String title;
 
+    @NotNull
     @ManyToOne
+    @JoinColumn(name = "book_author")
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "translation_author")
+    private Author translationAuthor;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "publishing_house")
+    private PublishingHouse publishingHouse;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "language_of_publication")
     private Language languageOfPublication;
 
     @ManyToOne
+    @JoinColumn(name = "language_of_translation")
     private Language languageOfTranslation;
 
     private int numberOfPages;
@@ -28,7 +44,8 @@ public class Book {
     private LocalDate releaseDate;
 
     @NotNull
-    private Year releaseYear;
+    @Column(columnDefinition = "SMALLINT")
+    private int releaseYear;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -36,8 +53,12 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, Language languageOfPublication, Language languageOfTranslation, int numberOfPages, int issueNumber, LocalDate releaseDate, Year releaseYear, String description) {
+    public Book(String title, Author author, Author translationAuthor, @NotNull PublishingHouse publishingHouse, Language languageOfPublication, Language languageOfTranslation,
+                int numberOfPages, int issueNumber, LocalDate releaseDate, int releaseYear, String description) {
         this.title = title;
+        this.author = author;
+        this.translationAuthor = translationAuthor;
+        this.publishingHouse = publishingHouse;
         this.languageOfPublication = languageOfPublication;
         this.languageOfTranslation = languageOfTranslation;
         this.numberOfPages = numberOfPages;
@@ -103,11 +124,11 @@ public class Book {
         this.releaseDate = releaseDate;
     }
 
-    public Year getReleaseYear() {
+    public int getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Year releaseYear) {
+    public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
 
@@ -117,5 +138,29 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Author getTranslationAuthor() {
+        return translationAuthor;
+    }
+
+    public void setTranslationAuthor(Author translationAuthor) {
+        this.translationAuthor = translationAuthor;
+    }
+
+    public PublishingHouse getPublishingHouse() {
+        return publishingHouse;
+    }
+
+    public void setPublishingHouse(PublishingHouse publishingHouse) {
+        this.publishingHouse = publishingHouse;
     }
 }
