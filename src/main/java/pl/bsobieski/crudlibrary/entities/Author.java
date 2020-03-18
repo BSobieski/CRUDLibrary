@@ -28,11 +28,11 @@ public class Author {
     private String description;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", orphanRemoval = true)
     private List<Book> listOfAuthorBooks = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "translationAuthor")
+    @OneToMany(mappedBy = "translationAuthor", orphanRemoval = true)
     private List<Book> listOfTranslatedBooks = new ArrayList<>();
 
     public Author() {

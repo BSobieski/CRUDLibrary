@@ -3,8 +3,10 @@ package pl.bsobieski.crudlibrary.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.Author;
+import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.repositories.AuthorRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +34,16 @@ public class AuthorService {
         authorRepository.deleteById(id);
     }
 
+    public Optional<Author> getByName(String name){
+       return authorRepository.getByName(name);
+    }
+
+    public Iterable<Author> saveAll(Iterable<Author> authorIterable){
+        return authorRepository.saveAll(authorIterable);
+    }
+
+    public List<Author> getAuthorNamesByPattern(String pattern){
+        return authorRepository.getAuthorNamesByPattern(pattern);
+    }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.Author;
 import pl.bsobieski.crudlibrary.services.AuthorService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,7 +23,7 @@ public class AuthorController {
         return authorService.getAll();
     }
 
-    @GetMapping
+    @GetMapping("/id")
     public Optional<Author> getById(@RequestParam Long id) {
         return authorService.getById(id);
     }
@@ -38,8 +39,18 @@ public class AuthorController {
     }
 
     @DeleteMapping
-    public void deleteAuthor(@RequestParam Long id) {
+    public void deleteAuthor(@RequestParam Long id){
         authorService.deleteById(id);
+    }
+
+    @GetMapping
+    public Optional<Author> getByName(@RequestParam String name){
+        return authorService.getByName(name);
+    }
+
+    @GetMapping("/{pattern}")
+    public List<Author> getAuthorNamesByPattern(@PathVariable("pattern") String pattern){
+        return authorService.getAuthorNamesByPattern(pattern);
     }
 
 }

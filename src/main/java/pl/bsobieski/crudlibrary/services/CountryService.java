@@ -2,6 +2,7 @@ package pl.bsobieski.crudlibrary.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.bsobieski.crudlibrary.entities.Author;
 import pl.bsobieski.crudlibrary.entities.Country;
 import pl.bsobieski.crudlibrary.repositories.CountryRepository;
 
@@ -29,8 +30,8 @@ public class CountryService {
         return countryRepository.save(country);
     }
 
-    public void deleteByName(String name) {
-        countryRepository.deleteByName(name);
+    public void deleteById(Long id) {
+        countryRepository.deleteById(id);
     }
 
     public Optional<Country> getByName(String name) {
@@ -39,5 +40,9 @@ public class CountryService {
 
     public List<Country> getCountryNamesByPattern(String pattern){
         return countryRepository.getCountryNamesByPattern(pattern);
+    }
+
+    public Iterable<Country> saveAll(Iterable<Country> countryIterable){
+        return countryRepository.saveAll(countryIterable);
     }
 }

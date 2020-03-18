@@ -2,6 +2,7 @@ package pl.bsobieski.crudlibrary.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.bsobieski.crudlibrary.entities.Author;
 import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.repositories.LanguageRepository;
 
@@ -33,11 +34,15 @@ public class LanguageService {
         return languageRepository.save(language);
     }
 
-    public void deleteByName(String name){
-        languageRepository.deleteByName(name);
+    public void deleteById(Long id){
+        languageRepository.deleteById(id);
     }
 
     public List<Language> getNameByPattern(String pattern){
         return languageRepository.getLanguageNameByPattern(pattern);
+    }
+
+    public Iterable<Language> saveAll(Iterable<Language> languageIterable){
+        return languageRepository.saveAll(languageIterable);
     }
 }

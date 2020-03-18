@@ -10,8 +10,6 @@ import java.util.Optional;
 public interface CountryRepository extends CrudRepository<Country, Long> {
     Optional<Country> getByName(String countryName);
 
-    void deleteByName(String authorName);
-
     @Query("select c " +
             "from Country c " +
             "where c.name like %?1%")

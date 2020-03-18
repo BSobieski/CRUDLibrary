@@ -7,5 +7,4 @@ import java.util.Optional;
 
 public interface PublishingHouseRepository extends CrudRepository<PublishingHouse, Long> {
     Optional<PublishingHouse> getByName(String name);
-    void deleteByName(String authorName);
 }

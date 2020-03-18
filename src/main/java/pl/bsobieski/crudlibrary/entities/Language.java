@@ -17,11 +17,11 @@ public class Language {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "languageOfPublication")
+    @OneToMany(mappedBy = "languageOfPublication", orphanRemoval = true)
     private List<Book> publicationLanguageBooks = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "languageOfTranslation")
+    @OneToMany(mappedBy = "languageOfTranslation", orphanRemoval = true)
     private List<Book> translatedLanguageBooks = new ArrayList<>();
 
     public Language() {

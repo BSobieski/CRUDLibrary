@@ -36,7 +36,7 @@ public class PublishingHouse {
     private String phone;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "publishingHouse")
+    @OneToMany(mappedBy = "publishingHouse", orphanRemoval = true)
     private List<Book> booksOfThePublishingHouse = new ArrayList<>();
 
     public PublishingHouse() {

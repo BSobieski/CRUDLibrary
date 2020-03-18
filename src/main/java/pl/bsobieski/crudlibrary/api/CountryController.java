@@ -39,8 +39,8 @@ public class CountryController {
     }
 
     @DeleteMapping
-    public void deleteCountry(@RequestParam String name){
-        countryService.deleteByName(name);
+    public void deleteCountry(@RequestParam Long id){
+        countryService.deleteById(id);
     }
 
     @GetMapping

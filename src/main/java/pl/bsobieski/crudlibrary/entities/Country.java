@@ -21,7 +21,7 @@ public class Country {
     private List<Author> authorsFromThisCountry = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", orphanRemoval = true)
     private List<PublishingHouse> publishingHousesFromCountry = new ArrayList<>();
 
     public Country(String name) {

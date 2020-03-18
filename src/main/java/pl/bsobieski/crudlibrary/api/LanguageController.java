@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.services.LanguageService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +46,8 @@ public class LanguageController {
     }
 
     @DeleteMapping
-    public void deleteLanguage(@RequestParam String name){
-        languageService.deleteByName(name);
+    public void deleteLanguage(@RequestParam Long id){
+        languageService.deleteById(id);
     }
 
     @GetMapping("/{pattern}")
