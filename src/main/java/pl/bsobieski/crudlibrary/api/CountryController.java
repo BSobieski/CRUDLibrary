@@ -23,8 +23,8 @@ public class CountryController {
         return countryService.getAll();
     }
 
-    @GetMapping("/id")
-    public Optional<Country> getById(@RequestParam Long id){
+    @GetMapping("/id/{id}")
+    public Optional<Country> getById(@PathVariable("id") Long id){
         return countryService.getById(id);
     }
 

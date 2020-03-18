@@ -18,7 +18,7 @@ public class PublishingHouse {
     private String name;
 
     @NotNull
-    private String streetAdress;
+    private String streetAddress;
 
     @NotNull
     private String postCode;
@@ -42,9 +42,9 @@ public class PublishingHouse {
     public PublishingHouse() {
     }
 
-    public PublishingHouse(String name, String streetAdress, @NotNull String postCode, String city, Country country, String phone, String email) {
+    public PublishingHouse(String name, String streetAddress, @NotNull String postCode, String city, Country country, String phone, String email) {
         this.name = name;
-        this.streetAdress = streetAdress;
+        this.streetAddress = streetAddress;
         this.postCode = postCode;
         this.city = city;
         this.country = country;
@@ -68,12 +68,12 @@ public class PublishingHouse {
         this.name = publishingHouseName;
     }
 
-    public String getStreetAdress() {
-        return streetAdress;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setStreetAdress(String streetAdress) {
-        this.streetAdress = streetAdress;
+    public void setStreetAddress(String streetAdress) {
+        this.streetAddress = streetAdress;
     }
 
     public String getCity() {

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.PublishingHouse;
 import pl.bsobieski.crudlibrary.repositories.PublishingHouseRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +31,17 @@ public class PublishingHouseService {
 
     public void deleteById(Long id) {
         publishingHouseRepository.deleteById(id);
+    }
+
+    public Optional<PublishingHouse> getByName(String name) {
+        return publishingHouseRepository.getByName(name);
+    }
+
+    public List<PublishingHouse> getPublishingHouseNamesByPattern(String pattern){
+        return publishingHouseRepository.getPublishingHouseNamesByPattern(pattern);
+    }
+
+    public List<PublishingHouse> getPublishingHousesByCity(String city){
+        return publishingHouseRepository.getPublishingHousesByCity(city);
     }
 }

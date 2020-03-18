@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.PublishingHouse;
 import pl.bsobieski.crudlibrary.services.PublishingHouseService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,8 +23,8 @@ public class PublishingHouseController {
         return publishingHouseService.getAll();
     }
 
-    @GetMapping
-    public Optional<PublishingHouse> getById(@RequestParam Long id){
+    @GetMapping("/id/{id}")
+    public Optional<PublishingHouse> getById(@PathVariable("id") Long id){
         return publishingHouseService.getById(id);
     }
 
@@ -40,5 +41,20 @@ public class PublishingHouseController {
     @DeleteMapping
     public void deletePublishingHouse(@RequestParam Long id){
         publishingHouseService.deleteById(id);
+    }
+
+    @GetMapping
+    public Optional<PublishingHouse> getByName(@RequestParam String name){
+        return publishingHouseService.getByName(name);
+    }
+
+    @GetMapping("/{pattern}")
+    public List<PublishingHouse> getPublishingHouseNamesByPattern(@PathVariable("pattern") String pattern){
+        return publishingHouseService.getPublishingHouseNamesByPattern(pattern);
+    }
+
+    @GetMapping("/city/{city}")
+    public List<PublishingHouse> getPublishingHousesByCity(@PathVariable("city") String city){
+        return publishingHouseService.getPublishingHousesByCity(city);
     }
 }

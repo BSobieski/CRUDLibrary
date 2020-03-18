@@ -23,8 +23,8 @@ public class AuthorController {
         return authorService.getAll();
     }
 
-    @GetMapping("/id")
-    public Optional<Author> getById(@RequestParam Long id) {
+    @GetMapping("/id/{id}")
+    public Optional<Author> getById(@PathVariable("id") Long id) {
         return authorService.getById(id);
     }
 

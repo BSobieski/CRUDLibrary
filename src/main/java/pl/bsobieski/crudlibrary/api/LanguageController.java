@@ -30,8 +30,8 @@ public class LanguageController {
         return languageService.getByName(name);
     }
 
-    @GetMapping("/id")
-    public Optional<Language> getById(@RequestParam Long id){
+    @GetMapping("/id/{id}")
+    public Optional<Language> getById(@PathVariable("id") Long id){
         return languageService.getById(id);
     }
 
