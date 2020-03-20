@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class LanguageService {
-    private LanguageRepository languageRepository;
+    private final LanguageRepository languageRepository;
 
     @Autowired
     public LanguageService(LanguageRepository languageRepository) {
@@ -37,7 +37,7 @@ public class LanguageService {
         languageRepository.deleteById(id);
     }
 
-    public List<Language> getNameByPattern(String pattern){
+    public Iterable<Language> getNameByPattern(String pattern){
         return languageRepository.getLanguageNameByPattern(pattern);
     }
 

@@ -14,11 +14,11 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     @Query("select b " +
             "from Book b " +
             "where b.title like %?1%")
-    List<Book> getBookTitlesByPattern(String pattern);
+    Iterable<Book> getBookTitlesByPattern(String pattern);
 
-    List<Book> getBooksByReleaseDateAfter(LocalDate releaseDate);
+    Iterable<Book> getBooksByReleaseDateAfter(LocalDate releaseDate);
 
-    List<Book> getBooksByReleaseYearAfter(Integer releaseYear);
+    Iterable<Book> getBooksByReleaseYearAfter(Integer releaseYear);
 
 
 }

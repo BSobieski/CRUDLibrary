@@ -7,33 +7,30 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import pl.bsobieski.crudlibrary.entities.*;
 import pl.bsobieski.crudlibrary.repositories.*;
-import pl.bsobieski.crudlibrary.services.AuthorService;
-import pl.bsobieski.crudlibrary.services.CountryService;
-import pl.bsobieski.crudlibrary.services.LanguageService;
+import pl.bsobieski.crudlibrary.services.*;
+import pl.bsobieski.crudlibrary.utils.Roles;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class DataBaseInit implements CommandLineRunner {
     private AuthorService authorService;
-    private BookRepository bookRepository;
+    private BookService bookService;
     private CountryService countryService;
     private LanguageService languageService;
-    private PublishingHouseRepository publishingHouseRepository;
+    private PublishingHouseService publishingHouseService;
+    private UserService userService;
 
-    @Autowired
-    public DataBaseInit(AuthorService authorService, BookRepository bookRepository, CountryService countryService, LanguageService languageService, PublishingHouseRepository publishingHouseRepository) {
+    public DataBaseInit(AuthorService authorService, BookService bookService, CountryService countryService, LanguageService languageService, PublishingHouseService publishingHouseService, UserService userService) {
         this.authorService = authorService;
-        this.bookRepository = bookRepository;
+        this.bookService = bookService;
         this.countryService = countryService;
         this.languageService = languageService;
-        this.publishingHouseRepository = publishingHouseRepository;
+        this.publishingHouseService = publishingHouseService;
+        this.userService = userService;
     }
 
     @Override
@@ -43,6 +40,13 @@ public class DataBaseInit implements CommandLineRunner {
         loadPublishingHouses();
         loadAuthors();
         loadBooks();
+        loadUsers();
+    }
+
+    private void loadUsers() {
+        List<User> users = new ArrayList<>();
+        users.add(new User("Sobiech250", Base64.getEncoder().encodeToString("123".getBytes()),"123", Roles.ADMIN.name(),""));
+        userService.saveAll(users);
     }
 
     private void loadBooks() {
@@ -54,7 +58,7 @@ public class DataBaseInit implements CommandLineRunner {
                 List<String> booksParameters = Arrays.asList(line.split(","));
                 Optional<Author> bookAuthor = authorService.getByName(booksParameters.get(1));
                 Optional<Author> translationAuthor = authorService.getByName(booksParameters.get(2));
-                Optional<PublishingHouse> publishingHouse = publishingHouseRepository.getByName(booksParameters.get(3));
+                Optional<PublishingHouse> publishingHouse = publishingHouseService.getByName(booksParameters.get(3));
                 Optional<Language> languageOfPublication = languageService.getByName(booksParameters.get(4));
                 Optional<Language> languageOfTranslation = languageService.getByName(booksParameters.get(5));
                 allBooksToSave.add(new Book(
@@ -72,7 +76,7 @@ public class DataBaseInit implements CommandLineRunner {
 
                 ));
             }
-            bookRepository.saveAll(allBooksToSave);
+            bookService.saveAll(allBooksToSave);
         }
         catch (IOException e){
             e.printStackTrace();
@@ -122,7 +126,7 @@ public class DataBaseInit implements CommandLineRunner {
                         ))
                 );
             }
-            publishingHouseRepository.saveAll(allPHToSave);
+            publishingHouseService.saveAll(allPHToSave);
         } catch (IOException e) {
             e.printStackTrace();
         }

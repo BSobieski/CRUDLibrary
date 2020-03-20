@@ -13,5 +13,5 @@ public interface AuthorRepository extends CrudRepository<Author, Long> {
     @Query("select a " +
             "from Author a " +
             "where a.name like %?1%")
-    List<Author> getAuthorNamesByPattern(String pattern);
+    Iterable<Author> getAuthorNamesByPattern(String pattern);
 }

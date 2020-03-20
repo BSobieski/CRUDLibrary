@@ -14,6 +14,6 @@ public interface LanguageRepository extends CrudRepository<Language, Long> {
     @Query("select l " +
             "FROM Language l " +
             "where l.name like %?1%")
-    List<Language> getLanguageNameByPattern(String pattern);
+    Iterable<Language> getLanguageNameByPattern(String pattern);
 
 }

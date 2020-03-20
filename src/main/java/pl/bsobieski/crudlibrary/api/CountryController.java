@@ -11,7 +11,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/country")
 public class CountryController {
-    private CountryService countryService;
+    private final CountryService countryService;
 
     @Autowired
     public CountryController(CountryService countryService) {
@@ -48,8 +48,8 @@ public class CountryController {
         return countryService.getByName(name);
     }
 
-    @GetMapping("/{pattern}")
-    public List<Country> getCountryNamesByPattern(@PathVariable("pattern") String pattern){
+    @GetMapping("/search/{pattern}")
+    public Iterable<Country> getCountryNamesByPattern(@PathVariable("pattern") String pattern){
         return countryService.getCountryNamesByPattern(pattern);
     }
 

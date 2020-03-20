@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class CountryService {
-    private CountryRepository countryRepository;
+    private final CountryRepository countryRepository;
 
     @Autowired
     public CountryService(CountryRepository countryRepository) {
@@ -37,7 +37,7 @@ public class CountryService {
         return countryRepository.getByName(name);
     }
 
-    public List<Country> getCountryNamesByPattern(String pattern){
+    public Iterable<Country> getCountryNamesByPattern(String pattern){
         return countryRepository.getCountryNamesByPattern(pattern);
     }
 

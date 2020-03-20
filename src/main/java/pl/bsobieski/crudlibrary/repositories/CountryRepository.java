@@ -13,5 +13,5 @@ public interface CountryRepository extends CrudRepository<Country, Long> {
     @Query("select c " +
             "from Country c " +
             "where c.name like %?1%")
-    List<Country> getCountryNamesByPattern(String pattern);
+    Iterable<Country> getCountryNamesByPattern(String pattern);
 }
