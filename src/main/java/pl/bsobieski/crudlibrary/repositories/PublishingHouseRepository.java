@@ -13,7 +13,7 @@ public interface PublishingHouseRepository extends CrudRepository<PublishingHous
     @Query("select ph " +
             "from PublishingHouse ph " +
             "where ph.name like %?1%")
-    List<PublishingHouse> getPublishingHouseNamesByPattern(String pattern);
+    Iterable<PublishingHouse> getPublishingHouseNamesByPattern(String pattern);
 
-    List<PublishingHouse>getPublishingHousesByCity(String city);
+    Iterable<PublishingHouse>getPublishingHousesByCity(String city);
 }

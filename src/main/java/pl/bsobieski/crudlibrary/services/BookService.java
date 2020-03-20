@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class BookService {
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     @Autowired
     public BookService(BookRepository bookRepository) {
@@ -30,6 +30,10 @@ public class BookService {
         return bookRepository.save(book);
     }
 
+    public Iterable<Book> saveAll(Iterable<Book> bookIterable){
+        return bookRepository.saveAll(bookIterable);
+    }
+
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
@@ -38,15 +42,15 @@ public class BookService {
         return bookRepository.getByTitle(title);
     }
 
-    public List<Book> getBookTitlesByPattern(String pattern) {
+    public Iterable<Book> getBookTitlesByPattern(String pattern) {
         return bookRepository.getBookTitlesByPattern(pattern);
     }
 
-    public List<Book> getBooksByReleaseDateAfter(LocalDate releaseDate) {
+    public Iterable<Book> getBooksByReleaseDateAfter(LocalDate releaseDate) {
         return bookRepository.getBooksByReleaseDateAfter(releaseDate);
     }
 
-    public List<Book> getBooksByReleaseYearAfter(Integer releaseYear){
+    public Iterable<Book> getBooksByReleaseYearAfter(Integer releaseYear){
         return bookRepository.getBooksByReleaseYearAfter(releaseYear);
     }
 }

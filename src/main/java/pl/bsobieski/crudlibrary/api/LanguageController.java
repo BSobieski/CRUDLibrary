@@ -11,7 +11,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/language")
 public class LanguageController {
-    private LanguageService languageService;
+    private final LanguageService languageService;
 
     @Autowired
     public LanguageController(LanguageService languageService) {
@@ -48,8 +48,8 @@ public class LanguageController {
         languageService.deleteById(id);
     }
 
-    @GetMapping("/{pattern}")
-    public List<Language> getNameByPattern(@PathVariable("pattern") String pattern){
+    @GetMapping("/search/{pattern}")
+    public Iterable<Language> getNameByPattern(@PathVariable("pattern") String pattern){
         return languageService.getNameByPattern(pattern);
     }
 }

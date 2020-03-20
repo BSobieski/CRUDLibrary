@@ -11,7 +11,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/publishinghouse")
 public class PublishingHouseController {
-    private PublishingHouseService publishingHouseService;
+    private final PublishingHouseService publishingHouseService;
 
     @Autowired
     public PublishingHouseController(PublishingHouseService publishingHouseService) {
@@ -48,13 +48,13 @@ public class PublishingHouseController {
         return publishingHouseService.getByName(name);
     }
 
-    @GetMapping("/{pattern}")
-    public List<PublishingHouse> getPublishingHouseNamesByPattern(@PathVariable("pattern") String pattern){
+    @GetMapping("/search/{pattern}")
+    public Iterable<PublishingHouse> getPublishingHouseNamesByPattern(@PathVariable("pattern") String pattern){
         return publishingHouseService.getPublishingHouseNamesByPattern(pattern);
     }
 
     @GetMapping("/city/{city}")
-    public List<PublishingHouse> getPublishingHousesByCity(@PathVariable("city") String city){
+    public Iterable<PublishingHouse> getPublishingHousesByCity(@PathVariable("city") String city){
         return publishingHouseService.getPublishingHousesByCity(city);
     }
 }

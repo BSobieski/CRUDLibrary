@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class PublishingHouseService {
-    private PublishingHouseRepository publishingHouseRepository;
+    private final PublishingHouseRepository publishingHouseRepository;
 
     @Autowired
     public PublishingHouseService(PublishingHouseRepository publishingHouseRepository) {
@@ -29,6 +29,10 @@ public class PublishingHouseService {
         return publishingHouseRepository.save(publishingHouse);
     }
 
+    public Iterable<PublishingHouse> saveAll(Iterable<PublishingHouse> publishingHouseIterable){
+        return publishingHouseRepository.saveAll(publishingHouseIterable);
+    }
+
     public void deleteById(Long id) {
         publishingHouseRepository.deleteById(id);
     }
@@ -37,11 +41,11 @@ public class PublishingHouseService {
         return publishingHouseRepository.getByName(name);
     }
 
-    public List<PublishingHouse> getPublishingHouseNamesByPattern(String pattern){
+    public Iterable<PublishingHouse> getPublishingHouseNamesByPattern(String pattern){
         return publishingHouseRepository.getPublishingHouseNamesByPattern(pattern);
     }
 
-    public List<PublishingHouse> getPublishingHousesByCity(String city){
+    public Iterable<PublishingHouse> getPublishingHousesByCity(String city){
         return publishingHouseRepository.getPublishingHousesByCity(city);
     }
 }

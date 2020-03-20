@@ -11,7 +11,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/author")
 public class AuthorController {
-    private AuthorService authorService;
+    private final AuthorService authorService;
 
     @Autowired
     public AuthorController(AuthorService authorService) {
@@ -48,8 +48,8 @@ public class AuthorController {
         return authorService.getByName(name);
     }
 
-    @GetMapping("/{pattern}")
-    public List<Author> getAuthorNamesByPattern(@PathVariable("pattern") String pattern){
+    @GetMapping("/search/{pattern}")
+    public Iterable<Author> getAuthorNamesByPattern(@PathVariable("pattern") String pattern){
         return authorService.getAuthorNamesByPattern(pattern);
     }
 

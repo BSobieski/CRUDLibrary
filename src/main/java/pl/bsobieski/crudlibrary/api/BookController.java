@@ -12,7 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/book")
 public class BookController {
-    private BookService bookService;
+    private final BookService bookService;
 
     @Autowired
     public BookController(BookService bookService) {
@@ -44,8 +44,8 @@ public class BookController {
         bookService.deleteById(id);
     }
 
-    @GetMapping("/{pattern}")
-    public List<Book> getBookTitlesByPattern(@PathVariable("pattern") String pattern){
+    @GetMapping("/search/{pattern}")
+    public Iterable<Book> getBookTitlesByPattern(@PathVariable("pattern") String pattern){
         return bookService.getBookTitlesByPattern(pattern);
     }
 
@@ -55,12 +55,12 @@ public class BookController {
     }
 
     @GetMapping("/releaseDate/{releaseDate}")
-    public List<Book> getBooksByReleaseDateAfter(@PathVariable("releaseDate") String releaseDate){
+    public Iterable<Book> getBooksByReleaseDateAfter(@PathVariable("releaseDate") String releaseDate){
         return bookService.getBooksByReleaseDateAfter(LocalDate.parse(releaseDate));
     }
 
     @GetMapping("/releaseYear/{releaseYear}")
-    public List<Book> getBooksByReleaseYearAfter(@PathVariable("releaseYear") Integer releaseYear){
+    public Iterable<Book> getBooksByReleaseYearAfter(@PathVariable("releaseYear") Integer releaseYear){
         return bookService.getBooksByReleaseYearAfter(releaseYear);
     }
 }
