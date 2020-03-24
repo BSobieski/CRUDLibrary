@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/author")
 public class AuthorController {
     private final AuthorService authorService;
 
@@ -18,37 +17,37 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/author/all")
     public Iterable<Author> getAll() {
         return authorService.getAll();
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/admin/author/id/{id}")
     public Optional<Author> getById(@PathVariable("id") Long id) {
         return authorService.getById(id);
     }
 
-    @PostMapping
+    @PostMapping("/admin/author")
     public Author addAuthor(@RequestBody Author author) {
         return authorService.save(author);
     }
 
-    @PutMapping
+    @PutMapping("/admin/author")
     public Author modifyAuthor(@RequestBody Author author) {
         return authorService.save(author);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/admin/author")
     public void deleteAuthor(@RequestParam Long id){
         authorService.deleteById(id);
     }
 
-    @GetMapping
+    @GetMapping("/admin/author")
     public Optional<Author> getByName(@RequestParam String name){
         return authorService.getByName(name);
     }
 
-    @GetMapping("/search/{pattern}")
+    @GetMapping("/author/search/{pattern}")
     public Iterable<Author> getAuthorNamesByPattern(@PathVariable("pattern") String pattern){
         return authorService.getAuthorNamesByPattern(pattern);
     }

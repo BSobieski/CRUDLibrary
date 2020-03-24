@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.Language;
 import pl.bsobieski.crudlibrary.services.LanguageService;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/language")
+@RequestMapping("/admin/language")
 public class LanguageController {
     private final LanguageService languageService;
 

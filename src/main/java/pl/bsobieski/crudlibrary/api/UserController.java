@@ -11,7 +11,6 @@ import pl.bsobieski.crudlibrary.services.UserService;
 //TODO JWT
 
 @RestController
-@RequestMapping("/api/user")
 public class UserController {
     private UserService userService;
 
@@ -20,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/admin/user/all")
     public Iterable<User> getUsers(){
         return userService.getAllUsers();
     }

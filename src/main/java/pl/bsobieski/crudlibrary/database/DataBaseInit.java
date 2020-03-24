@@ -24,6 +24,7 @@ public class DataBaseInit implements CommandLineRunner {
     private PublishingHouseService publishingHouseService;
     private UserService userService;
 
+    @Autowired
     public DataBaseInit(AuthorService authorService, BookService bookService, CountryService countryService, LanguageService languageService, PublishingHouseService publishingHouseService, UserService userService) {
         this.authorService = authorService;
         this.bookService = bookService;
