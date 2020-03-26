@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.User;
 import pl.bsobieski.crudlibrary.repositories.UserRepository;
 
-import java.util.List;
+import javax.naming.Context;
+import java.util.Base64;
 
 @Service
 public class UserService {
@@ -16,11 +17,9 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    //TODO encrypting password
     public void save(User user){
-        //encrypting password
-        user.setRoles("USER");
-        user.setPermissions("");
+        user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
+        user.setRole("USER");
         userRepository.save(user);
     }
 

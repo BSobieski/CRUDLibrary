@@ -35,12 +35,19 @@ public class JwtFilter extends BasicAuthenticationFilter {
         chain.doFilter(request,response);
     }
 
+    //TODO change secret key
     private UsernamePasswordAuthenticationToken getAuthenticationByToken(String token) {
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString("c|u9CtsVe>jOwN{".getBytes()))
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString("cLSMQk$h~cYik?k".getBytes()))
                 .parseClaimsJws(token.replace("Bearer ",""));
 
-        String username = claimsJws.getBody().get("name").toString();
+        String username = claimsJws.getBody().get("sub").toString();
+        String firstName = claimsJws.getBody().get("firstName").toString();
+        String lastName = claimsJws.getBody().get("lastName").toString();
+        String emailAdress = claimsJws.getBody().get("emailAdress").toString();
         String role = claimsJws.getBody().get("role").toString();
+
+        //TODO get user from database and check
+
         Set<SimpleGrantedAuthority> simpleGrantedAuthorities = Collections.singleton(new SimpleGrantedAuthority(role));
         return new UsernamePasswordAuthenticationToken(username,null,simpleGrantedAuthorities);
     }

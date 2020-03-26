@@ -6,7 +6,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import pl.bsobieski.crudlibrary.entities.*;
-import pl.bsobieski.crudlibrary.repositories.*;
 import pl.bsobieski.crudlibrary.services.*;
 import pl.bsobieski.crudlibrary.utils.Roles;
 
@@ -25,7 +24,8 @@ public class DataBaseInit implements CommandLineRunner {
     private UserService userService;
 
     @Autowired
-    public DataBaseInit(AuthorService authorService, BookService bookService, CountryService countryService, LanguageService languageService, PublishingHouseService publishingHouseService, UserService userService) {
+    public DataBaseInit(AuthorService authorService, BookService bookService, CountryService countryService,
+                        LanguageService languageService, PublishingHouseService publishingHouseService, UserService userService) {
         this.authorService = authorService;
         this.bookService = bookService;
         this.countryService = countryService;
@@ -46,7 +46,12 @@ public class DataBaseInit implements CommandLineRunner {
 
     private void loadUsers() {
         List<User> users = new ArrayList<>();
-        users.add(new User("Sobiech250", Base64.getEncoder().encodeToString("123".getBytes()),"123", Roles.ADMIN.name(),""));
+        users.add(new User("Sobiech250", Base64.getEncoder().encodeToString("123".getBytes()),"123", "Bartosz",
+                "Sobieski","123456789","123@123.com",Roles.ADMIN.name(),  LocalDate.parse("1998-10-08"),false));
+        users.add(new User("SimpleUserAccount", Base64.getEncoder().encodeToString("useruser".getBytes()),"useruser","user",
+                "user","user","user", Roles.USER.name(), LocalDate.parse("1998-10-08"),false));
+        users.add(new User("LockedUser", Base64.getEncoder().encodeToString("locked".getBytes()),"locked", "locked",
+                "locked","locked","locked",Roles.USER.name(), LocalDate.parse("1990-12-01"),true));
         userService.saveAll(users);
     }
 
