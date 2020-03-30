@@ -1,6 +1,7 @@
 package pl.bsobieski.crudlibrary.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.User;
 import pl.bsobieski.crudlibrary.repositories.UserRepository;
@@ -11,14 +12,16 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     public void save(User user){
-        user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRole("USER");
         userRepository.save(user);
     }

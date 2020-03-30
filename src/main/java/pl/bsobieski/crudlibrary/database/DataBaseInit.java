@@ -2,8 +2,10 @@ package pl.bsobieski.crudlibrary.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.bsobieski.crudlibrary.entities.*;
 import pl.bsobieski.crudlibrary.services.*;
@@ -22,16 +24,19 @@ public class DataBaseInit implements CommandLineRunner {
     private LanguageService languageService;
     private PublishingHouseService publishingHouseService;
     private UserService userService;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public DataBaseInit(AuthorService authorService, BookService bookService, CountryService countryService,
-                        LanguageService languageService, PublishingHouseService publishingHouseService, UserService userService) {
+                        LanguageService languageService, PublishingHouseService publishingHouseService,
+                        UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.authorService = authorService;
         this.bookService = bookService;
         this.countryService = countryService;
         this.languageService = languageService;
         this.publishingHouseService = publishingHouseService;
         this.userService = userService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -44,13 +49,14 @@ public class DataBaseInit implements CommandLineRunner {
         loadUsers();
     }
 
+
     private void loadUsers() {
         List<User> users = new ArrayList<>();
-        users.add(new User("Sobiech250", Base64.getEncoder().encodeToString("123".getBytes()),"123", "Bartosz",
+        users.add(new User("Sobiech250", bCryptPasswordEncoder.encode("123"),"123", "Bartosz",
                 "Sobieski","123456789","123@123.com",Roles.ADMIN.name(),  LocalDate.parse("1998-10-08"),false));
-        users.add(new User("SimpleUserAccount", Base64.getEncoder().encodeToString("useruser".getBytes()),"useruser","user",
+        users.add(new User("SimpleUserAccount", bCryptPasswordEncoder.encode("useruser"),"useruser","user",
                 "user","user","user", Roles.USER.name(), LocalDate.parse("1998-10-08"),false));
-        users.add(new User("LockedUser", Base64.getEncoder().encodeToString("locked".getBytes()),"locked", "locked",
+        users.add(new User("LockedUser", bCryptPasswordEncoder.encode("locked"),"locked", "locked",
                 "locked","locked","locked",Roles.USER.name(), LocalDate.parse("1990-12-01"),true));
         userService.saveAll(users);
     }
