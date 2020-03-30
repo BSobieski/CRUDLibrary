@@ -5,9 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.User;
 import pl.bsobieski.crudlibrary.repositories.UserRepository;
 
-import javax.naming.Context;
 import java.util.Base64;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -32,7 +31,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new NoSuchElementException());
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

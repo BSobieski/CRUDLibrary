@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Table(name = "users")
 @Entity
@@ -38,7 +37,7 @@ public class User {
     private String phoneNumber;
 
     @NotNull
-    private String emailAdress;
+    private String emailAddress;
 
     @NotNull
     private String role;
@@ -53,7 +52,7 @@ public class User {
     }
 
     public User(@NotNull String username, @NotNull String password, @NotNull String passwordConfirm, @NotNull String firstName,
-                @NotNull String lastName, @NotNull String phoneNumber, @NotNull String emailAdress, @NotNull String role,
+                @NotNull String lastName, @NotNull String phoneNumber, @NotNull String emailAddress, @NotNull String role,
                 @NotNull LocalDate dateOfBirth, @NotNull boolean isAccountLocked) {
         this.username = username;
         this.password = password;
@@ -61,7 +60,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.emailAdress = emailAdress;
+        this.emailAddress = emailAddress;
         this.role = role;
         this.dateOfBirth = dateOfBirth;
         this.isAccountLocked = isAccountLocked;
@@ -91,12 +90,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmailAdress() {
-        return emailAdress;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmailAdress(String emailAdress) {
-        this.emailAdress = emailAdress;
+    public void setEmailAddress(String emailAdress) {
+        this.emailAddress = emailAdress;
     }
 
     public LocalDate getDateOfBirth() {
