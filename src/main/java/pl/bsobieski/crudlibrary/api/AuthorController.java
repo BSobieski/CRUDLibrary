@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.Author;
 import pl.bsobieski.crudlibrary.services.AuthorService;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController

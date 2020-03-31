@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.User;
 import pl.bsobieski.crudlibrary.repositories.UserRepository;
 
-import java.util.Base64;
 import java.util.Optional;
 
 @Service

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pl.bsobieski.crudlibrary.entities.PublishingHouse;
 import pl.bsobieski.crudlibrary.repositories.PublishingHouseRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
