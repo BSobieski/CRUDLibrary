@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
-import java.util.List;
+import java.time.LocalDate;
 
-@Entity
 @Table(name = "users")
+@Entity
 public class User {
 
     @Id
@@ -16,6 +15,7 @@ public class User {
     private Long id;
 
     @NotNull
+    @Column(unique = true)
     private String username;
 
     @JsonIgnore
@@ -28,33 +28,90 @@ public class User {
     private String passwordConfirm;
 
     @NotNull
-    private String roles;
+    private String firstName;
 
-    @JsonIgnore
     @NotNull
-    private String permissions;
+    private String lastName;
+
+    @NotNull
+    private String phoneNumber;
+
+    @NotNull
+    private String emailAddress;
+
+    @NotNull
+    private String role;
+
+    @NotNull
+    private LocalDate dateOfBirth;
+
+    @NotNull
+    private boolean isAccountLocked;
 
     public User() {
     }
 
-    public User(@NotNull String username, @NotNull String password, @NotNull String passwordConfirm, @NotNull String roles, @NotNull String permissions) {
+    public User(@NotNull String username, @NotNull String password, @NotNull String passwordConfirm, @NotNull String firstName,
+                @NotNull String lastName, @NotNull String phoneNumber, @NotNull String emailAddress, @NotNull String role,
+                @NotNull LocalDate dateOfBirth, @NotNull boolean isAccountLocked) {
         this.username = username;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
-        this.roles = roles;
-        this.permissions = permissions;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.role = role;
+        this.dateOfBirth = dateOfBirth;
+        this.isAccountLocked = isAccountLocked;
     }
 
-    @JsonIgnore
-    public List<String> getRoleList(){
-        List<String> roleList = Arrays.asList(this.roles.split(","));
-        return roleList;
+    public String getFirstName() {
+        return firstName;
     }
 
-    @JsonIgnore
-    public List<String> getPermissionList(){
-        List<String> permissionList = Arrays.asList(this.permissions.split(","));
-        return permissionList;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAdress) {
+        this.emailAddress = emailAdress;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public boolean isAccountLocked() {
+        return isAccountLocked;
+    }
+
+    public void setAccountLocked(boolean accountLocked) {
+        isAccountLocked = accountLocked;
     }
 
     public Long getId() {
@@ -89,19 +146,12 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public String getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setRole(String roles) {
+        this.role = roles;
     }
 
-    public String getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(String permissions) {
-        this.permissions = permissions;
-    }
 }

@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.bsobieski.crudlibrary.entities.Country;
 import pl.bsobieski.crudlibrary.services.CountryService;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/country")
+@RequestMapping("/admin/country")
 public class CountryController {
     private final CountryService countryService;
 

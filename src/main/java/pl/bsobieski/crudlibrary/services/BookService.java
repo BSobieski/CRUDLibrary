@@ -6,7 +6,6 @@ import pl.bsobieski.crudlibrary.entities.Book;
 import pl.bsobieski.crudlibrary.repositories.BookRepository;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Service
