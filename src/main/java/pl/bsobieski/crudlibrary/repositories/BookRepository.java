@@ -2,11 +2,13 @@ package pl.bsobieski.crudlibrary.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import pl.bsobieski.crudlibrary.entities.Book;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
+@Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
     Optional<Book> getByTitle(String title);
 

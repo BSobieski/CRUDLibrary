@@ -2,10 +2,12 @@ package pl.bsobieski.crudlibrary.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import pl.bsobieski.crudlibrary.entities.PublishingHouse;
 
 import java.util.Optional;
 
+@Repository
 public interface PublishingHouseRepository extends CrudRepository<PublishingHouse, Long> {
     Optional<PublishingHouse> getByName(String name);
 

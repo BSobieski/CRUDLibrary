@@ -2,10 +2,10 @@ package pl.bsobieski.crudlibrary.utils;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 
-@Component
+@Configuration
 public class Beans {
 
     @Bean
@@ -14,7 +14,7 @@ public class Beans {
     }
 
     @Bean
-    BCryptPasswordEncoder getBCryptPasswordEncoder(){
+    BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
 }
